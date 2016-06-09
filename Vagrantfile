@@ -47,12 +47,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	end
       end
       server.vm.network "private_network", ip: "10.10.1.#{ip}", virtualbox__intnet: "internal"
+      server.vm.provision "shell", path: "ceph_preflight.sh"
     end
   end
 
   config.vm.define "cephadmin" do |server|
     server.vm.hostname = "cephadmin"
     server.vm.network "private_network", ip: "10.10.1.5", virtualbox__intnet: "internal"
+    server.vm.provision "shell", path: "ceph_preflight.sh", env: { "cephadmin": "true" }
   end
 
   config.hostmanager.enabled = true
