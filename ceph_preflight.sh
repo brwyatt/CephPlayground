@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Based on:
+#   http://docs.ceph.com/docs/jewel/start/quick-start-preflight/
+
 ceph_release="infernalis"
 ceph_deploy_user="cephadmin"
 ceph_deploy_pass="admin_pass"
