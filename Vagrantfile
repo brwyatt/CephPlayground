@@ -28,11 +28,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   cache_dir = local_cache(config.vm.box)
   config.vm.synced_folder cache_dir, "/var/cache/apt/archives/"
 
-  config.vm.define "cephadmin" do |server|
-    server.vm.hostname = "cephadmin"
-    server.vm.network "private_network", ip: "10.10.1.5", virtualbox__intnet: "internal"
-  end
-
   (0..2).each do |num|
     ip = num + 10
     config.vm.define "ceph#{num}" do |server|
@@ -53,6 +48,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
       server.vm.network "private_network", ip: "10.10.1.#{ip}", virtualbox__intnet: "internal"
     end
+  end
+
+  config.vm.define "cephadmin" do |server|
+    server.vm.hostname = "cephadmin"
+    server.vm.network "private_network", ip: "10.10.1.5", virtualbox__intnet: "internal"
   end
 
   config.hostmanager.enabled = true
