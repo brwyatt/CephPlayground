@@ -1,3 +1,7 @@
+# Vim
+.*.swp
+
+# Vagrant
 /.vagrant
 /.vagrant_cache
 /.ceph_storage
